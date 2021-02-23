@@ -1,0 +1,118 @@
+//
+//  ViewController.swift
+//  MemeMe
+//
+//  Created by Fabiana Petrovick on 20/02/21.
+//  Copyright © 2021 Fabiana Petrovick. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+protocol ImagePickerDelegate {
+    func imagePickerFotoSelecionada(_ image:UIImage)
+}
+
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var top: UITextField!
+    @IBOutlet weak var bottom: UITextField!
+    
+    let imagePicker = UIImagePickerController()
+    
+    // MARK: - Atributos
+    
+    let memeTextAttributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.strokeColor: UIColor.black,
+        NSAttributedString.Key.foregroundColor: UIColor.white,
+        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 50)!,
+        NSAttributedString.Key.strokeWidth: -3.0
+    ]
+    
+    // MARK: - View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imagePicker.delegate = self
+        top.text = "Digite o título do Meme"
+        top.textAlignment = .center
+        top.defaultTextAttributes = memeTextAttributes
+        bottom.text = "Final do Meme"
+        bottom.textAlignment = .center
+        bottom.defaultTextAttributes = memeTextAttributes
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            // imagePickerView.contentMode = .scaleAspectFill
+            imagePickerView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func pickAnImageAlbum(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+        print("aqi album")
+        
+    }
+    
+    @IBAction func pickAnImageCamera(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+        // dismiss(animated: true, completion: nil)
+        print("aqi camera")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // picker.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        print("aqi 2")
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+        print("TextField começou o método de edição chamado")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        print("TextField deve retornar")
+        
+        return true
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        view.frame.origin.y = -getKeyboardHeight(notification)
+    }
+    
+    func getKeyboardHeight(_ notication:Notification) -> CGFloat {
+        let userInfo = notication.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)    }
+}
