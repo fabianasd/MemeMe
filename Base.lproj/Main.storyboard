@@ -33,7 +33,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Jv-76-6l8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-EZ-TiA">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-EZ-TiA" userLabel="Image">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WYF-Zv-qVW">
@@ -81,6 +81,7 @@
                         <outlet property="bottom" destination="nhC-YI-znz" id="qXt-ah-zNv"/>
                         <outlet property="cameraButton" destination="BNv-Ne-zk1" id="83n-4T-vBj"/>
                         <outlet property="imagePickerView" destination="ZBf-EZ-TiA" id="I9T-Gr-Bkb"/>
+                        <outlet property="memedImage" destination="ZBf-EZ-TiA" id="ddZ-cw-cAC"/>
                         <outlet property="top" destination="WYF-Zv-qVW" id="8s2-wH-bee"/>
                     </connections>
                 </viewController>
