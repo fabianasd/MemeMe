@@ -28,6 +28,11 @@
                                             <action selector="pickAnImageCamera:" destination="BYZ-38-t0r" id="vXh-H5-wwN"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Compartilhar" id="3kz-r9-dA0">
+                                        <connections>
+                                            <action selector="compartilhar:" destination="BYZ-38-t0r" id="7Af-Hm-96f"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Jv-76-6l8">
@@ -80,6 +85,7 @@
                     <connections>
                         <outlet property="bottom" destination="nhC-YI-znz" id="qXt-ah-zNv"/>
                         <outlet property="cameraButton" destination="BNv-Ne-zk1" id="83n-4T-vBj"/>
+                        <outlet property="compartilhar" destination="3kz-r9-dA0" id="Enm-3N-5Af"/>
                         <outlet property="imagePickerView" destination="ZBf-EZ-TiA" id="I9T-Gr-Bkb"/>
                         <outlet property="memedImage" destination="ZBf-EZ-TiA" id="ddZ-cw-cAC"/>
                         <outlet property="top" destination="WYF-Zv-qVW" id="8s2-wH-bee"/>

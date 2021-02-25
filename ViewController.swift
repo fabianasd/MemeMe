@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - IBOutlets
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var compartilhar: UIBarButtonItem!
     @IBOutlet weak var top: UITextField!
     @IBOutlet weak var bottom: UITextField!
     @IBOutlet weak var memedImage: UIImageView!
@@ -72,15 +73,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("aqi camera")
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-     //   subscribeToKeyboardNotifications()
+        //   subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-      //  unsubscribeFromKeyboardNotifications()
+        //  compartilhar.isEnabled = UIBarButtonItem.instancesRespond(to: compartilhar)
+        //  unsubscribeFromKeyboardNotifications()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -101,36 +104,47 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
-//    @objc func keyboardWillShow(_ notification:Notification) {
-//        view.frame.origin.y -= getKeyboardHeight(notification)
-//        print("aqui show")
-//    }
-//
-//    @objc func keyboardWillHide(_ notification:Notification) {
-//        view.frame.origin.y += getKeyboardHeight(notification)
-//        print("aqui hide")
-//
-//    }
-//
-//    func getKeyboardHeight(_ notication:Notification) -> CGFloat {
-//        let userInfo = notication.userInfo
-//        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-//        return keyboardSize.cgRectValue.height
-//    }
-//
-//    func subscribeToKeyboardNotifications() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-//        print("aqui subscribe")
-//
-//    }
-//
-//    func unsubscribeFromKeyboardNotifications() {
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//        print("aqui unsu")
-//
-//    }
+    //    @objc func keyboardWillShow(_ notification:Notification) {
+    //        view.frame.origin.y -= getKeyboardHeight(notification)
+    //        print("aqui show")
+    //    }
+    //
+    //    @objc func keyboardWillHide(_ notification:Notification) {
+    //        view.frame.origin.y += getKeyboardHeight(notification)
+    //        print("aqui hide")
+    //
+    //    }
+    //
+    //    func getKeyboardHeight(_ notication:Notification) -> CGFloat {
+    //        let userInfo = notication.userInfo
+    //        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+    //        return keyboardSize.cgRectValue.height
+    //    }
+    //
+    //    func subscribeToKeyboardNotifications() {
+    //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    //        print("aqui subscribe")
+    //
+    //    }
+    //
+    //    func unsubscribeFromKeyboardNotifications() {
+    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    //        print("aqui unsu")
+    //
+    //    }
+    
+    
+    @IBAction func compartilhar(_ sender: Any) {
+        imagePicker.allowsEditing = false
+        generateMemedImage()
+        
+        let items = [generateMemedImage()]
+        let memedImage = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(memedImage, animated: true)
+    }
+    
     struct Meme {
         let top: String
         let bottom: String
