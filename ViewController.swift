@@ -22,6 +22,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var top: UITextField!
     @IBOutlet weak var bottom: UITextField!
     @IBOutlet weak var memedImage: UIImageView!
+    @IBOutlet weak var cancel: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
     
@@ -37,15 +38,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //     super.viewDidLoad()
         imagePicker.delegate = self
-        top.text = "Digite o título do Meme"
+        top.text = "Top"
         top.textAlignment = .center
         top.defaultTextAttributes = memeTextAttributes
-        bottom.text = "Final do Meme"
+        bottom.text = "bottom"
         bottom.textAlignment = .center
         bottom.defaultTextAttributes = memeTextAttributes
-        
+        // self.view.bringSubviewToFront(top)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -55,6 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         dismiss(animated: true, completion: nil)
     }
+    
     
     @IBAction func pickAnImageAlbum(_ sender: UIButton) {
         imagePicker.allowsEditing = false
@@ -73,16 +75,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("aqi camera")
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        //   subscribeToKeyboardNotifications()
+        //subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //  compartilhar.isEnabled = UIBarButtonItem.instancesRespond(to: compartilhar)
+        //          compartilhar.isEnabled = UIBarButtonItem()
         //  unsubscribeFromKeyboardNotifications()
     }
     
@@ -92,9 +93,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("aqi 2")
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-        print("TextField começou o método de edição chamado")
+    @IBAction func textFieldBeginEditingTop(_ sender: UITextField) {
+        top.text = ""
+    }
+    
+    @IBAction func textFieldDidBeginEditingBottom(_ sender: UITextField) {
+        bottom.text = ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -104,41 +108,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
-    //    @objc func keyboardWillShow(_ notification:Notification) {
-    //        view.frame.origin.y -= getKeyboardHeight(notification)
-    //        print("aqui show")
-    //    }
+    //        @objc func keyboardWillShow(_ notification:Notification) {
+    //            view.frame.origin.y -= getKeyboardHeight(notification)
+    //            print("aqui show")
+    //        }
     //
-    //    @objc func keyboardWillHide(_ notification:Notification) {
-    //        view.frame.origin.y += getKeyboardHeight(notification)
-    //        print("aqui hide")
+    //        @objc func keyboardWillHide(_ notification:Notification) {
+    //            view.frame.origin.y += getKeyboardHeight(notification)
+    //            print("aqui hide")
     //
-    //    }
+    //        }
     //
-    //    func getKeyboardHeight(_ notication:Notification) -> CGFloat {
-    //        let userInfo = notication.userInfo
-    //        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-    //        return keyboardSize.cgRectValue.height
-    //    }
+    //        func getKeyboardHeight(_ notication:Notification) -> CGFloat {
+    //            let userInfo = notication.userInfo
+    //            let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+    //            return keyboardSize.cgRectValue.height
+    //        }
     //
-    //    func subscribeToKeyboardNotifications() {
-    //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-    //        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    //        print("aqui subscribe")
+    //        func subscribeToKeyboardNotifications() {
+    //            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    //            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    //            print("aqui subscribe")
     //
-    //    }
+    //        }
     //
-    //    func unsubscribeFromKeyboardNotifications() {
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    //        print("aqui unsu")
+    //        func unsubscribeFromKeyboardNotifications() {
+    //            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    //            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    //            print("aqui unsu")
     //
-    //    }
+    //        }
     
     
     @IBAction func compartilhar(_ sender: Any) {
         imagePicker.allowsEditing = false
-        generateMemedImage()
+        //     generateMemedImage()
         
         let items = [generateMemedImage()]
         let memedImage = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -152,8 +156,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage: UIImageView
     }
     
+    var completionWithItemsHandler: UIActivityViewController.CompletionWithItemsHandler?
+    
     func save() {
         let meme = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        
+        //        let items = [generateMemedImage()]
+        //        let memedImage = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        //        //  present(memedImage, animated: true, completion: nil)
+        //
+        //        memedImage.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: NSError?) in
+        //            if completed {
+        //                print("deu certo")
+        //                return
+        //            } else {
+        //                print("cancel")
+        //            }
+        //            if let shareError = error {
+        //                print("error while sharing: \(shareError.localizesDescription)")
+        //            }
+        //        }
+        //
+        //        present(memedImage, animated: true, completion: nil)
     }
     
     func generateMemedImage() -> UIImage {
@@ -165,5 +189,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         return memedImage
+    }
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        imagePickerView.image = nil
     }
 }
