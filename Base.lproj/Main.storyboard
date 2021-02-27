@@ -20,7 +20,7 @@
                                 <items>
                                     <barButtonItem title="Compartilhar" image="square.and.arrow.up" catalog="system" id="3kz-r9-dA0">
                                         <connections>
-                                            <action selector="compartilhar:" destination="BYZ-38-t0r" id="7Af-Hm-96f"/>
+                                            <action selector="share:" destination="BYZ-38-t0r" id="rv7-TM-eZp"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="rZH-Nc-dML"/>
@@ -109,12 +109,14 @@
                     </view>
                     <connections>
                         <outlet property="bottom" destination="nhC-YI-znz" id="qXt-ah-zNv"/>
+                        <outlet property="bottomToolbar" destination="yzr-Mf-QK0" id="rTk-R7-n9j"/>
                         <outlet property="cameraButton" destination="BNv-Ne-zk1" id="83n-4T-vBj"/>
                         <outlet property="cancel" destination="g03-E4-3Qa" id="9GK-HY-jWi"/>
-                        <outlet property="compartilhar" destination="3kz-r9-dA0" id="Enm-3N-5Af"/>
                         <outlet property="imagePickerView" destination="ZBf-EZ-TiA" id="I9T-Gr-Bkb"/>
                         <outlet property="memedImage" destination="ZBf-EZ-TiA" id="ddZ-cw-cAC"/>
+                        <outlet property="share" destination="3kz-r9-dA0" id="UtZ-KK-hVp"/>
                         <outlet property="top" destination="WYF-Zv-qVW" id="8s2-wH-bee"/>
+                        <outlet property="upperToolbar" destination="MJv-3v-ila" id="AP1-fE-AUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

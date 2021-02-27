@@ -9,47 +9,45 @@
 import Foundation
 import UIKit
 
-protocol ImagePickerDelegate {
-    func imagePickerFotoSelecionada(_ image:UIImage)
-}
-
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
+    
+    struct Meme {
+        let top: String
+        let bottom: String
+        let originalImage: UIImage
+        let memedImage: UIImageView
+    }
     
     // MARK: - IBOutlets
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var compartilhar: UIBarButtonItem!
+    @IBOutlet weak var share: UIBarButtonItem!
     @IBOutlet weak var top: UITextField!
     @IBOutlet weak var bottom: UITextField!
     @IBOutlet weak var memedImage: UIImageView!
     @IBOutlet weak var cancel: UIBarButtonItem!
-    
-    let imagePicker = UIImagePickerController()
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    @IBOutlet weak var upperToolbar: UIToolbar!
     
     // MARK: - Atributos
     var TextBeingChangedfield: String = ""
+    let imagePicker = UIImagePickerController()
+    var completionWithItemsHandler: UIActivityViewController.CompletionWithItemsHandler?
     
-    let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 50)!,
-        NSAttributedString.Key.strokeWidth: -3.0
-    ]
+    let customImagePickerDelegate = CustomImagePickerDelegate()
     
     // MARK: - View Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //  imagePicker.delegate = self
-        top.text = "TOP"
-        top.defaultTextAttributes = memeTextAttributes
+        
+        top.text = customImagePickerDelegate.initialTopText
+        top.defaultTextAttributes = customImagePickerDelegate.memeTextAttributes
         top.textAlignment = .center
         
-        bottom.text = "BOTTOM"
-        bottom.defaultTextAttributes = memeTextAttributes
+        bottom.text = customImagePickerDelegate.initialBottomText
+        bottom.defaultTextAttributes = customImagePickerDelegate.memeTextAttributes
         bottom.textAlignment = .center
         
-        // self.view.bringSubviewToFront(top)
         self.top.delegate = self
         self.bottom.delegate = self
     }
@@ -57,25 +55,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        // compartilhar.isEnabled = UIBarButtonItem.isEqual(compartilhar)
         subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //compartilhar.isEnabled = UIBarButtonItem.isEqual(compartilhar)
         unsubscribeFromKeyboardNotifications()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imagePickerView.contentMode = .scaleAspectFit
-            imagePickerView.image = pickedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
+    // MARK: - IBActions
     @IBAction func pickAnImageAlbum(_ sender: UIButton) {
         imagePicker.allowsEditing = false
         let imagePicker = UIImagePickerController()
@@ -94,17 +82,44 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
-    //funciona
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // picker.dismiss(animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
-        print("aqi 2")
-    }
-    
     @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
         TextBeingChangedfield = sender.accessibilityIdentifier!
         print(TextBeingChangedfield)
         sender.text = ""
+    }
+    
+    @IBAction func share(_ sender: Any) {        
+        imagePicker.allowsEditing = false
+        
+        let items = [generateMemedImage()]
+        let memedImage = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        memedImage.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if !completed {
+                print("Something went wrong!")
+                return
+            }
+            print("Image saved successfully!")
+        }
+        present(memedImage, animated: true)
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        imagePickerView.image = nil
+        top.text = customImagePickerDelegate.initialTopText
+        bottom.text = customImagePickerDelegate.initialBottomText
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imagePickerView.contentMode = .scaleAspectFit
+            imagePickerView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -113,6 +128,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return false
     }
     
+    func generateMemedImage() -> UIImage {
+        
+        bottomToolbar.isHidden = true
+        upperToolbar.isHidden = true
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        bottomToolbar.isHidden = false
+        upperToolbar.isHidden = false
+        
+        return memedImage
+    }
+    
+    // MARK: -- Keyboard methods
     @objc func keyboardWillShow(_ notification:Notification) {
         if(TextBeingChangedfield == "bottomLabel") {
             view.frame.origin.y = -getKeyboardHeight(notification)
@@ -139,43 +171,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    
-    @IBAction func compartilhar(_ sender: Any) {
-        imagePicker.allowsEditing = false
-        
-        let items = [generateMemedImage()]
-        let memedImage = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        present(memedImage, animated: true)
-    }
-    
-    struct Meme {
-        let top: String
-        let bottom: String
-        let originalImage: UIImage
-        let memedImage: UIImageView
-    }
-    
-    var completionWithItemsHandler: UIActivityViewController.CompletionWithItemsHandler?
-    
-    func save() {
-        _ = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
-    }
-    
-    func generateMemedImage() -> UIImage {
-        
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return memedImage
-    }
-    
-    @IBAction func cancel(_ sender: Any) {
-        imagePickerView.image = nil
-        top.text = ""
-        bottom.text = ""
     }
 }
