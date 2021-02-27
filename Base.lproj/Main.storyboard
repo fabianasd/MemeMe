@@ -37,20 +37,22 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-EZ-TiA" userLabel="Image">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WYF-Zv-qVW">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WYF-Zv-qVW">
                                         <rect key="frame" x="24" y="17" width="334" height="18.5"/>
+                                        <accessibility key="accessibilityConfiguration" hint="topHint" identifier="topIdentifier" label="topLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                         <connections>
-                                            <action selector="textFieldBeginEditingTop:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="WZo-0L-3OX"/>
+                                            <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="50e-pE-Lqq"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhC-YI-znz">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhC-YI-znz">
                                         <rect key="frame" x="24" y="537.5" width="334" height="18.5"/>
+                                        <accessibility key="accessibilityConfiguration" hint="bottomLabel" identifier="bottomLabel" label="bottomLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                         <connections>
-                                            <action selector="textFieldDidBeginEditingBottom:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="g6F-gY-yk1"/>
+                                            <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="Zbn-aI-d2h"/>
                                         </connections>
                                     </textField>
                                 </subviews>
