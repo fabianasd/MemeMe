@@ -6,12 +6,12 @@
 
 ### Home
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/imageApp/home.png)
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/imageApp/home.png)
 
 ### Home Page
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/imageApp/homepage.png)
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/imageApp/homepage.png)
 
 ### Meme
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/imageApp/meme.png)
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/imageApp/meme.png)
