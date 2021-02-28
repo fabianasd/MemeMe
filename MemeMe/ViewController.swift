@@ -83,7 +83,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
-    
     @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
         TextBeingChangedfield = sender.accessibilityIdentifier!
         sender.text = ""

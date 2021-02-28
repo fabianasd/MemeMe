@@ -27,5 +27,4 @@ class CustomImagePickerDelegate: UIViewController, UIImagePickerControllerDelega
     func setupTextField(_ textField: UITextField, text: String) {
         textField.text = text
     }
-    
 }
