@@ -11,13 +11,6 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
     
-    struct Meme {
-        let top: String
-        let bottom: String
-        let originalImage: UIImage
-        let memedImage: UIImageView
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -28,6 +21,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var upperToolbar: UIToolbar!
+    @IBOutlet weak var pickImageToolbar: UIBarButtonItem!
     
     // MARK: - Atributos
     var TextBeingChangedfield: String = ""
@@ -40,13 +34,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        top.text = customImagePickerDelegate.initialTopText
+        customImagePickerDelegate.setupTextField(top, text: customImagePickerDelegate.initialTopText)
+        customImagePickerDelegate.setupTextField(bottom, text: customImagePickerDelegate.initialBottomText)
+        
         top.defaultTextAttributes = customImagePickerDelegate.memeTextAttributes
         top.textAlignment = .center
         
-        bottom.text = customImagePickerDelegate.initialBottomText
         bottom.defaultTextAttributes = customImagePickerDelegate.memeTextAttributes
         bottom.textAlignment = .center
+        
+        pickImageToolbar.accessibilityIdentifier = "PickerImage"
+        cameraButton.accessibilityIdentifier = "CameraButton"
         
         self.top.delegate = self
         self.bottom.delegate = self
@@ -63,28 +61,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     
-    // MARK: - IBActions
-    @IBAction func pickAnImageAlbum(_ sender: UIButton) {
+    func presentPickerViewController(source: UIImagePickerController.SourceType) {
         imagePicker.allowsEditing = false
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    @IBAction func pickAnImageCamera(_ sender: UIButton) {
-        imagePicker.allowsEditing = false
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
         imagePicker.sourceType = .camera
         
         present(imagePicker, animated: true, completion: nil)
     }
     
+    // MARK: - IBActions
+    @IBAction func getImage(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType =
+            sender.accessibilityIdentifier == "PickerImage" ? .photoLibrary
+            : .camera
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func textFieldDidBeginEditing(_ sender: UITextField) {
         TextBeingChangedfield = sender.accessibilityIdentifier!
-        print(TextBeingChangedfield)
         sender.text = ""
     }
     
@@ -94,20 +95,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let items = [generateMemedImage()]
         let memedImage = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
-        memedImage.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-            if !completed {
-                print("Something went wrong!")
-                return
+        memedImage.completionWithItemsHandler = {
+            (activity, completed, items, error) in
+            if completed {
+                self.save()
             }
-            print("Image saved successfully!")
         }
         present(memedImage, animated: true)
     }
     
     @IBAction func cancel(_ sender: Any) {
         imagePickerView.image = nil
-        top.text = customImagePickerDelegate.initialTopText
-        bottom.text = customImagePickerDelegate.initialBottomText
+        customImagePickerDelegate.setupTextField(top, text: customImagePickerDelegate.initialTopText)
+        customImagePickerDelegate.setupTextField(bottom, text: customImagePickerDelegate.initialBottomText)
+    }
+    
+    func save() {
+        _ = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
