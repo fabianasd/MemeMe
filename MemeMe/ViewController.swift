@@ -88,7 +88,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         sender.text = ""
     }
     
-    @IBAction func share(_ sender: Any) {        
+    @IBAction func share(_ sender: Any) {
+        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //        memes = appDelegate.memes
+        //
+        var memes: [Meme]! {
+            let object = UIApplication.shared.delegate
+            let appDegate = object as! AppDelegate
+            return appDegate.memes
+        }
         imagePicker.allowsEditing = false
         
         let items = [generateMemedImage()]
@@ -110,7 +118,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func save() {
-        _ = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        let meme = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
