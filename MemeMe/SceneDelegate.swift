@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  MemeMe
 //
-//  Created by Gabriel Petrovick on 20/02/21.
+//  Created by Fabiana Petrovick on 20/02/21.
 //  Copyright © 2021 Fabiana Petrovick. All rights reserved.
 //
 
