@@ -27,6 +27,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var TextBeingChangedfield: String = ""
     let imagePicker = UIImagePickerController()
     var completionWithItemsHandler: UIActivityViewController.CompletionWithItemsHandler?
+    var savedMemedImage: UIImageView!
     
     let customImagePickerDelegate = CustomImagePickerDelegate()
     
@@ -108,6 +109,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.save()
             }
         }
+        self.savedMemedImage = UIImageView(image: items[0])
         present(memedImage, animated: true)
     }
     
@@ -118,7 +120,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func save() {
-        let meme = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        let meme = Meme(top: top.text!, bottom: bottom.text!, originalImage: imagePickerView.image!, memedImage: savedMemedImage, memedUIImage: (savedMemedImage?.image)!)
         
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate

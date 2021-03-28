@@ -12,26 +12,11 @@ import UIKit
 
 class SentMemesViewCell: UICollectionViewCell {
     
-    // var allMeme = [Meme]()
+    var meme: Meme!
     
     // MARK: Outlets
     
     @IBOutlet weak var MemeImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
-    func viewDidLoad() {
-        print("viewDidLoad UICollectionViewCell")
-        
-        let space:CGFloat = 3.0
-        //largura
-        let dimension = (frame.size.width - (2 * space)) / 3.0
-        //altura TODO
-     //   let dimension2 = (frame.size.height - (2 * space)) / 3.0
-        
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
-    }
+    //  @IBOutlet weak var nameLabel: UILabel!
+
 }

@@ -14,4 +14,5 @@ struct Meme {
     let bottom: String
     let originalImage: UIImage
     let memedImage: UIImageView
+    let memedUIImage: UIImage
 }
