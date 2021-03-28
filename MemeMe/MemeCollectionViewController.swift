@@ -13,7 +13,7 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet var MemeTableView: UITableView!
     
     var allMeme = [Meme]()
-   
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         print("viewDidLoad")
@@ -29,7 +29,7 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
         let appDelegate = object as! AppDelegate
         
         allMeme = appDelegate.memes
-              
+        
         MemeTableView.reloadData()
     }
     
@@ -55,13 +55,11 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
         
         return cell
     }
-    //list
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Aqui no meme collection list didSelectRowAt")
-      //  var memeDetails = self.allMeme[indexPath.row]
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailsViewController
         detailController.meme = self.allMeme[(indexPath as NSIndexPath).row]
-        //   detailController.meme = memeDetails
         self.navigationController!.pushViewController(detailController, animated: true)
     }
 }
