@@ -30,41 +30,34 @@
         <scene sceneID="eHC-gQ-WLX">
             <objects>
                 <collectionViewController id="7Ru-7W-cwx" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oLy-2n-Nxe">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" id="oLy-2n-Nxe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="IVG-6C-hzc">
-                            <size key="itemSize" width="128" height="128"/>
+                            <size key="itemSize" width="123" height="123"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SentMemesViewCell" id="jlP-nc-FeB" customClass="SentMemesViewCell" customModule="MemeMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="SentMemesViewCell" id="jlP-nc-FeB" customClass="SentMemesViewCell" customModule="MemeMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hxg-Tc-kl7">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="hxg-Tc-kl7">
+                                    <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ICd-hw-v64">
-                                            <rect key="frame" x="-9.5" y="-4" width="147" height="132"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICd-hw-v64">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.93190711736679077" green="0.72047775983810425" blue="0.93697124719619751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="147" id="hAF-6S-fnr"/>
-                                                <constraint firstAttribute="height" constant="132" id="z8b-8j-fbc"/>
-                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="0.49485838409999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="ICd-hw-v64" secondAttribute="bottom" id="HYq-3Q-Vaw"/>
-                                        <constraint firstItem="ICd-hw-v64" firstAttribute="centerX" secondItem="hxg-Tc-kl7" secondAttribute="centerX" id="u5e-XX-hvO"/>
-                                    </constraints>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" red="0.15460468390000001" green="0.30267678149999999" blue="0.97225967639999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="customSize" width="128" height="128"/>
+                                <size key="customSize" width="123" height="123"/>
                                 <connections>
                                     <outlet property="MemeImageView" destination="ICd-hw-v64" id="40r-km-quw"/>
                                 </connections>
@@ -111,37 +104,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeCollectionViewCell" rowHeight="96" id="Jik-nV-yja" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeCollectionViewCell" rowHeight="96" id="Jik-nV-yja" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MemeDetailViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jik-nV-yja" id="29Z-gO-1ux">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MIE-iZ-IQd">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MIE-iZ-IQd">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="96"/>
                                             <accessibility key="accessibilityConfiguration" identifier="MemeDetailViewCell"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="110" id="vbh-K4-j8Z"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TOP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-3f-odm">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TOP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-3f-odm">
                                             <rect key="frame" x="120" y="38" width="110" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BOTTOM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHE-Wj-aer">
-                                            <rect key="frame" x="238" y="38" width="137" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOTTOM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHE-Wj-aer">
+                                            <rect key="frame" x="238" y="38" width="70.5" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="FNI-3f-odm" firstAttribute="leading" secondItem="MIE-iZ-IQd" secondAttribute="trailing" constant="10" id="3L4-kn-nVj"/>
+                                        <constraint firstItem="FNI-3f-odm" firstAttribute="top" secondItem="29Z-gO-1ux" secondAttribute="topMargin" constant="27" id="836-cr-1US"/>
                                         <constraint firstAttribute="bottom" secondItem="MIE-iZ-IQd" secondAttribute="bottom" id="Ktf-Ba-bRu"/>
+                                        <constraint firstItem="FNI-3f-odm" firstAttribute="centerY" secondItem="oHE-Wj-aer" secondAttribute="centerY" id="QSx-tg-fVq"/>
+                                        <constraint firstItem="FNI-3f-odm" firstAttribute="centerY" secondItem="MIE-iZ-IQd" secondAttribute="centerY" id="aJz-Va-BSD"/>
+                                        <constraint firstAttribute="trailing" secondItem="oHE-Wj-aer" secondAttribute="trailing" constant="66.5" id="mqk-Xg-tqO"/>
+                                        <constraint firstItem="FNI-3f-odm" firstAttribute="firstBaseline" secondItem="oHE-Wj-aer" secondAttribute="firstBaseline" id="vBz-Uy-os6"/>
                                         <constraint firstItem="MIE-iZ-IQd" firstAttribute="leading" secondItem="29Z-gO-1ux" secondAttribute="leading" id="vT2-B2-s5M"/>
                                         <constraint firstItem="MIE-iZ-IQd" firstAttribute="top" secondItem="29Z-gO-1ux" secondAttribute="top" id="xPR-QY-DhK"/>
                                     </constraints>
