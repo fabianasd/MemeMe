@@ -16,12 +16,10 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     
     // MARK: Life Cycle
     override func viewDidLoad() {
-        print("viewDidLoad")
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         
@@ -38,7 +36,6 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
         super.viewWillAppear(animated)
     }
     
@@ -57,7 +54,6 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Aqui no meme collection list didSelectRowAt")
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailsViewController
         detailController.meme = self.allMeme[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(detailController, animated: true)
