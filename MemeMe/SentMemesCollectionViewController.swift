@@ -17,7 +17,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     // MARK: Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillApper")
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         
@@ -31,9 +30,9 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad Collection")
         
         let space:CGFloat = 3.0
+        let cellsPerRow = 3
         let dimension = (view.frame.size.width - (2 * space)) / 3.0
         
         flowLayout.minimumInteritemSpacing = space

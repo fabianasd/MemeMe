@@ -11,7 +11,7 @@ import UIKit
 // MARK: - MemeCollectionViewCell: UICollectionViewCell
 
 class MemeCollectionViewCell: UITableViewCell {
-        
+    
     // MARK: Outlets
     @IBOutlet weak var MemeImageView: UIImageView!
     @IBOutlet weak var BottomLabel: UILabel!

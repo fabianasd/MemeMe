@@ -17,6 +17,5 @@ class SentMemesViewCell: UICollectionViewCell {
     // MARK: Outlets
     
     @IBOutlet weak var MemeImageView: UIImageView!
-    //  @IBOutlet weak var nameLabel: UILabel!
-
+    
 }
