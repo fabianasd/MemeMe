@@ -6,17 +6,17 @@
 
 ### Home
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/Mememe2.0/ImagesApp/home.png)
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/blob/master/ImagesApp/home.png)
 
-### Home Create
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/ImagesApp/memeCreate.png)
+### Meme Create
+
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/blob/master/ImagesApp/memeCreate.png)
 
 ### Meme List
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/ImagesApp/memeListII.png)
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/blob/master/ImagesApp/memeList.png)
 
 ### Meme Collection
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/MemeMe/ImagesApp/memeCollection.png)
-
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/blob/master/ImagesApp/memeCollection.png)
