@@ -38,7 +38,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
-        print(CGSize(width: dimension, height: dimension))
     }
     
     override func viewDidAppear(_ animated: Bool) {

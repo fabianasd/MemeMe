@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMe
 //
 //  Created by Fabiana Petrovick on 20/02/21.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
     
     // MARK: - IBOutlets
     @IBOutlet weak var imagePickerView: UIImageView!
@@ -47,8 +47,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickImageToolbar.accessibilityIdentifier = "PickerImage"
         cameraButton.accessibilityIdentifier = "CameraButton"
         
-        self.top.delegate = self
-        self.bottom.delegate = self
+        configure(top, with: "TOP")
+        configure(bottom, with: "BOTTOM")
+    }
+    
+    func configure(_ textField: UITextField, with defaultText: String) {
+        textField.text = defaultText
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,16 +64,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
-    }
-    
-    func presentPickerViewController(source: UIImagePickerController.SourceType) {
-        imagePicker.allowsEditing = false
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.sourceType = .camera
-        
-        present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - IBActions
@@ -114,9 +108,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func cancel(_ sender: Any) {
-        imagePickerView.image = nil
-        customImagePickerDelegate.setupTextField(top, text: customImagePickerDelegate.initialTopText)
-        customImagePickerDelegate.setupTextField(bottom, text: customImagePickerDelegate.initialBottomText)
+        dismiss(animated: true, completion: nil)
+        //        imagePickerView.image = nil
+        //        customImagePickerDelegate.setupTextField(top, text: customImagePickerDelegate.initialTopText)
+        //        customImagePickerDelegate.setupTextField(bottom, text: customImagePickerDelegate.initialBottomText)
     }
     
     func save() {
@@ -145,33 +140,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return false
     }
     
+    func hideUnhideToolbar(_ toolbar: UIToolbar) {
+        toolbar.isHidden = !toolbar.isHidden
+    }
+    
+    
     func generateMemedImage() -> UIImage {
         
-        bottomToolbar.isHidden = true
-        upperToolbar.isHidden = true
+        hideUnhideToolbar(bottomToolbar)
+        hideUnhideToolbar(upperToolbar)
+        //
+        //        bottomToolbar.isHidden = true
+        //        upperToolbar.isHidden = true
+        
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        bottomToolbar.isHidden = false
-        upperToolbar.isHidden = false
-        
+        hideUnhideToolbar(bottomToolbar)
+        hideUnhideToolbar(upperToolbar)
+        //        bottomToolbar.isHidden = false
+        //        upperToolbar.isHidden = false
+        //
         return memedImage
     }
     
     // MARK: -- Keyboard methods
     @objc func keyboardWillShow(_ notification:Notification) {
-        if(TextBeingChangedfield == "bottomLabel") {
-            view.frame.origin.y = -getKeyboardHeight(notification)
+        if bottom.isFirstResponder {
+            view.frame.origin.y = -getKeyboardHeight(notification) * (-1)
         }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-        if(TextBeingChangedfield == "bottomLabel") {
-            view.frame.origin.y += getKeyboardHeight(notification)
-        }
+        view.frame.origin.y = 0
     }
     
     func getKeyboardHeight(_ notication:Notification) -> CGFloat {

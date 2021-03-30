@@ -8,8 +8,6 @@
 
 import UIKit
 
-// MARK: - MemeCollectionViewCell: UICollectionViewCell
-
 class MemeCollectionViewCell: UITableViewCell {
     
     // MARK: Outlets

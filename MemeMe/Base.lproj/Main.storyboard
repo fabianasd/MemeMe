@@ -184,13 +184,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vkl-rk-44u">
-                                <rect key="frame" x="0.0" y="177" width="375" height="313"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vkl-rk-44u">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Vkl-rk-44u" firstAttribute="top" secondItem="Pyt-rk-Nbu" secondAttribute="top" constant="177" id="MQX-EL-qp7"/>
+                            <constraint firstItem="Vkl-rk-44u" firstAttribute="top" secondItem="Pyt-rk-Nbu" secondAttribute="top" id="MQX-EL-qp7"/>
                             <constraint firstItem="Vkl-rk-44u" firstAttribute="leading" secondItem="Pyt-rk-Nbu" secondAttribute="leading" id="kzO-Ri-SjS"/>
                             <constraint firstItem="Vkl-rk-44u" firstAttribute="centerY" secondItem="UpV-pO-Iua" secondAttribute="centerY" id="t5a-T8-saM"/>
                             <constraint firstItem="Vkl-rk-44u" firstAttribute="centerX" secondItem="UpV-pO-Iua" secondAttribute="centerX" id="vAS-cQ-GC9"/>
@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="-802" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

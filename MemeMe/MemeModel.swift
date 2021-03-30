@@ -6,7 +6,6 @@
 //  Copyright © 2021 Fabiana Petrovick. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct Meme {

@@ -35,10 +35,6 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
         return self.allMeme.count
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCollectionViewCell") as! MemeCollectionViewCell
         let meme = self.allMeme[(indexPath as NSIndexPath).row]
