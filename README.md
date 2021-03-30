@@ -14,9 +14,12 @@
 
 ### Meme List
 
-![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/ImagesApp/memeListII.png)
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/ImagesApp/memeList.png)
 
 ### Meme Collection
 
 ![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/ImagesApp/memeCollection.png)
 
+### Meme Detail
+
+![Orders](https://raw.githubusercontent.com/fabianasd/MemeMe/master/ImagesApp/memeDetail.png)
