@@ -10,6 +10,7 @@ import UIKit
 
 class MemeCollectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: Outlets
     @IBOutlet var MemeTableView: UITableView!
     
     var allMeme = [Meme]()

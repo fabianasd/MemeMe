@@ -15,7 +15,6 @@ class SentMemesViewCell: UICollectionViewCell {
     var meme: Meme!
     
     // MARK: Outlets
-    
     @IBOutlet weak var MemeImageView: UIImageView!
     
 }

@@ -12,6 +12,7 @@ class MemeDetailsViewController: UIViewController {
     
     var meme: Meme!
     
+    // MARK: Outlets
     @IBOutlet weak var memeImage: UIImageView!
     
     override func viewDidLoad() {

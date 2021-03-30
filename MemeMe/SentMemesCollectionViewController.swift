@@ -12,10 +12,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     var allMeme = [Meme]()
     
+    // MARK: Outlets
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     // MARK: Life Cycle
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false

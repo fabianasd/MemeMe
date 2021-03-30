@@ -84,9 +84,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func share(_ sender: Any) {
-        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //        memes = appDelegate.memes
-        //
         var memes: [Meme]! {
             let object = UIApplication.shared.delegate
             let appDegate = object as! AppDelegate
@@ -109,9 +106,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        //        imagePickerView.image = nil
-        //        customImagePickerDelegate.setupTextField(top, text: customImagePickerDelegate.initialTopText)
-        //        customImagePickerDelegate.setupTextField(bottom, text: customImagePickerDelegate.initialBottomText)
     }
     
     func save() {
@@ -149,10 +143,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         hideUnhideToolbar(bottomToolbar)
         hideUnhideToolbar(upperToolbar)
-        //
-        //        bottomToolbar.isHidden = true
-        //        upperToolbar.isHidden = true
-        
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -161,9 +151,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         hideUnhideToolbar(bottomToolbar)
         hideUnhideToolbar(upperToolbar)
-        //        bottomToolbar.isHidden = false
-        //        upperToolbar.isHidden = false
-        //
+        
         return memedImage
     }
     
