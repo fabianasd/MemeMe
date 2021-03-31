@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C265C0325EC186900EFDC1F /* MemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C265C0225EC186900EFDC1F /* MemeModel.swift */; };
+		0C3CFB352613FD920008E5E7 /* AcessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CFB342613FD920008E5E7 /* AcessibilityIdentifier.swift */; };
 		0C6706BA25EAE3A50003AE4D /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6706B925EAE3A50003AE4D /* ImagePickerDelegate.swift */; };
 		0C794C192606A5EF00A0E40B /* MemeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C794C182606A5EF00A0E40B /* MemeCollectionViewController.swift */; };
 		0C794C1B2606A7F000A0E40B /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C794C1A2606A7F000A0E40B /* SentMemesCollectionViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		0C265C0225EC186900EFDC1F /* MemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeModel.swift; sourceTree = "<group>"; };
+		0C3CFB342613FD920008E5E7 /* AcessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcessibilityIdentifier.swift; sourceTree = "<group>"; };
 		0C6706B925EAE3A50003AE4D /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		0C794C182606A5EF00A0E40B /* MemeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewController.swift; sourceTree = "<group>"; };
 		0C794C1A2606A7F000A0E40B /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				0CAC26FD25E1EAE200C3120C /* SceneDelegate.swift */,
 				0CAC26FF25E1EAE200C3120C /* MemeEditorViewController.swift */,
 				0C6706B925EAE3A50003AE4D /* ImagePickerDelegate.swift */,
+				0C3CFB342613FD920008E5E7 /* AcessibilityIdentifier.swift */,
 				0C265C0225EC186900EFDC1F /* MemeModel.swift */,
 				0C794C182606A5EF00A0E40B /* MemeCollectionViewController.swift */,
 				0C794C1A2606A7F000A0E40B /* SentMemesCollectionViewController.swift */,
@@ -196,6 +199,7 @@
 				0CAC26FE25E1EAE200C3120C /* SceneDelegate.swift in Sources */,
 				0C794C192606A5EF00A0E40B /* MemeCollectionViewController.swift in Sources */,
 				0CA4235526115E61001B0C96 /* SentMemesViewCell.swift in Sources */,
+				0C3CFB352613FD920008E5E7 /* AcessibilityIdentifier.swift in Sources */,
 				0C265C0325EC186900EFDC1F /* MemeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

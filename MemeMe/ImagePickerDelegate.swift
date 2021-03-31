@@ -14,17 +14,18 @@ protocol ImagePickerProtocolDelegate {
 
 class CustomImagePickerDelegate: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    let initialTopText = "TOP"
-    let initialBottomText = "BOTTOM"
-    
-    let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        .strokeColor: UIColor.black,
-        .foregroundColor: UIColor.white,
-        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 50)!,
-        .strokeWidth: -3.0
-    ]
-    
-    func setupTextField(_ textField: UITextField, text: String) {
-        textField.text = text
+    func setupTextField(_ tf: UITextField, text: String) {
+        
+        tf.defaultTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.white,
+            NSAttributedString.Key.strokeColor : UIColor.black,
+            NSAttributedString.Key.font : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth : -4.0,
+        ]
+        tf.textColor = .white
+        tf.tintColor = .white
+        tf.textAlignment = .center
+        tf.text = text
+        tf.delegate = self
     }
 }

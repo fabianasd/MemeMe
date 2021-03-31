@@ -1,5 +1,5 @@
 //
-//  MemeListViewController.swift
+//  MemeCollectionViewController.swift
 //  MemeMe
 //
 //  Created by Fabiana Petrovick on 20/03/21.
@@ -14,6 +14,8 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet var MemeTableView: UITableView!
     
     var allMeme = [Meme]()
+    var memeCollectionViewCellLabel: String = "MemeCollectionViewCell"
+    var memeDetailViewControllerLabel: String = "MemeDetailViewController"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -37,10 +39,9 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCollectionViewCell") as! MemeCollectionViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: memeCollectionViewCellLabel) as! MemeCollectionViewCell
         let meme = self.allMeme[(indexPath as NSIndexPath).row]
         
-        // Set the name and image
         cell.MemeImageView.image = meme.memedUIImage
         cell.topLabel.text = meme.top.description
         cell.BottomLabel.text = meme.bottom.description
@@ -51,7 +52,7 @@ class MemeCollectionViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailsViewController
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: memeDetailViewControllerLabel) as! MemeDetailsViewController
         detailController.meme = self.allMeme[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(detailController, animated: true)
     }

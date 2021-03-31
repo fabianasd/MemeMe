@@ -34,25 +34,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        customImagePickerDelegate.setupTextField(top, text: "TOP")
+        customImagePickerDelegate.setupTextField(bottom, text: "BOTTOM")
         
-        customImagePickerDelegate.setupTextField(top, text: customImagePickerDelegate.initialTopText)
-        customImagePickerDelegate.setupTextField(bottom, text: customImagePickerDelegate.initialBottomText)
+        pickImageToolbar.accessibilityIdentifier = AcessibilityIdentifier.pickerImage
+        cameraButton.accessibilityIdentifier = AcessibilityIdentifier.cameraButton
         
-        top.defaultTextAttributes = customImagePickerDelegate.memeTextAttributes
-        top.textAlignment = .center
-        
-        bottom.defaultTextAttributes = customImagePickerDelegate.memeTextAttributes
-        bottom.textAlignment = .center
-        
-        pickImageToolbar.accessibilityIdentifier = "PickerImage"
-        cameraButton.accessibilityIdentifier = "CameraButton"
-        
-        configure(top, with: "TOP")
-        configure(bottom, with: "BOTTOM")
-    }
-    
-    func configure(_ textField: UITextField, with defaultText: String) {
-        textField.text = defaultText
+        self.top.delegate = self
+        self.bottom.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +61,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType =
-            sender.accessibilityIdentifier == "PickerImage" ? .photoLibrary
+            sender.accessibilityIdentifier == AcessibilityIdentifier.pickerImage ? .photoLibrary
             : .camera
         
         present(imagePicker, animated: true, completion: nil)
@@ -138,7 +127,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         toolbar.isHidden = !toolbar.isHidden
     }
     
-    
     func generateMemedImage() -> UIImage {
         
         hideUnhideToolbar(bottomToolbar)
@@ -158,7 +146,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: -- Keyboard methods
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottom.isFirstResponder {
-            view.frame.origin.y = -getKeyboardHeight(notification) * (-1)
+            view.frame.origin.y = -getKeyboardHeight(notification) * (+1)
         }
     }
     

@@ -11,6 +11,8 @@ import UIKit
 class SentMemesCollectionViewController: UICollectionViewController {
     
     var allMeme = [Meme]()
+    var sentMemesViewCellLabel: String = "SentMemesViewCell"
+    var memeDetailViewControllerLabel: String = "MemeDetailViewController"
     
     // MARK: Outlets
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -51,17 +53,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemesViewCell", for: indexPath) as! SentMemesViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sentMemesViewCellLabel, for: indexPath) as! SentMemesViewCell
         let meme = self.allMeme[(indexPath as NSIndexPath).row]
         
-        // Set the image
         cell.MemeImageView.image = meme.memedUIImage
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailsViewController
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: memeDetailViewControllerLabel) as! MemeDetailsViewController
         detailController.meme = self.allMeme[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(detailController, animated: true)
     }
